@@ -19,14 +19,10 @@ io.on('connection', (socket) => {
   socket.on('disconnect', () => {
     console.log('Disconnected from Client');
   });
-  socket.on('createMessage', (message) => {
+  socket.on('createMessage', (message, callback) => {
     console.log('created message', message);
     io.emit('newMessage', generateMessage(message.from, message.text));
-    // socket.broadcast.emit('newMessage', {
-    //   from: message.from,
-    //   text: message.text,
-    //   createdAt: new Date().getTime()
-    // });
+    callback('acknowledged by the server');
   });
 });
 

@@ -18,8 +18,12 @@ io.on('connection', (socket) => {
   });
   socket.on('createMessage', (message) => {
     console.log('created message', message);
+    io.emit('newMessage', {
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+    });
   });
-  socket.emit('newMessage', {from: 'Kuro', text: 'sayonara', createdAt: 1234321});
 });
 
 server.listen(port, () => {

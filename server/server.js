@@ -15,7 +15,11 @@ io.on('connection', (socket) => {
   console.log('new user connected');
   socket.on('disconnect', () => {
     console.log('Disconnected from Client');
-  })
+  });
+  socket.on('createMessage', (message) => {
+    console.log('created message', message);
+  });
+  socket.emit('newMessage', {from: 'Kuro', text: 'sayonara', createdAt: 1234321});
 });
 
 server.listen(port, () => {

@@ -20,7 +20,7 @@ io.on('connection', (socket) => {
     console.log('Disconnected from Client');
   });
   socket.on('createMessage', (message, callback) => {
-    console.log('created message', message);
+    // console.log('created message', message);
     io.emit('newMessage', generateMessage(message.from, message.text));
     callback();
   });
